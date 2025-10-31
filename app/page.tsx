@@ -165,25 +165,74 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-5xl mx-auto"
           >
-            {[
-              { icon: '🛰️', label: 'Satellite Analysis', color: 'cyan' },
-              { icon: '📊', label: 'Market Intelligence', color: 'blue' },
-              { icon: '🎯', label: 'Hidden Opportunities', color: 'purple' },
-              { icon: '📈', label: 'Growth Prediction', color: 'green' }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7 + i * 0.1 }}
-                className={`bg-gradient-to-br from-${item.color}-500/10 to-${item.color}-600/5 border border-${item.color}-500/30 rounded-xl p-4 backdrop-blur-sm hover:scale-105 transition-transform`}
-              >
-                <div className="text-3xl mb-2">{item.icon}</div>
-                <p className={`text-${item.color}-400 font-semibold text-sm`}>{item.label}</p>
-              </motion.div>
-            ))}
+            {/* Satellite Analysis */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7 }}
+              className="bg-gradient-to-br from-cyan-500/10 to-cyan-600/5 border-2 border-cyan-500/30 rounded-xl p-6 backdrop-blur-sm hover:scale-105 hover:border-cyan-400/50 transition-all"
+            >
+              <svg className="w-16 h-16 mx-auto mb-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#00b4ff" strokeWidth="2" opacity="0.3"/>
+                <circle cx="50" cy="50" r="25" fill="none" stroke="#00b4ff" strokeWidth="2" opacity="0.5"/>
+                <circle cx="50" cy="50" r="15" fill="none" stroke="#00b4ff" strokeWidth="2"/>
+                <path d="M30 30 L40 40 M60 40 L70 30 M40 60 L30 70 M60 60 L70 70" stroke="#0ff" strokeWidth="2" strokeLinecap="round"/>
+                <circle cx="50" cy="50" r="4" fill="#00ffff"/>
+              </svg>
+              <p className="text-cyan-400 font-bold text-center text-sm">Satellite Analysis</p>
+            </motion.div>
+
+            {/* Market Intelligence */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8 }}
+              className="bg-gradient-to-br from-white/5 to-gray-500/5 border-2 border-white/20 rounded-xl p-6 backdrop-blur-sm hover:scale-105 hover:border-white/40 transition-all"
+            >
+              <svg className="w-16 h-16 mx-auto mb-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="15" y="60" width="12" height="30" fill="#ff4bc8" rx="2"/>
+                <rect x="32" y="40" width="12" height="50" fill="#2ed4ff" rx="2"/>
+                <rect x="49" y="50" width="12" height="40" fill="#00ffae" rx="2"/>
+                <rect x="66" y="30" width="12" height="60" fill="#8b5cf6" rx="2"/>
+              </svg>
+              <p className="text-white font-bold text-center text-sm">Market Intelligence</p>
+            </motion.div>
+
+            {/* Hidden Opportunities */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.9 }}
+              className="bg-gradient-to-br from-purple-500/10 to-pink-600/5 border-2 border-purple-500/30 rounded-xl p-6 backdrop-blur-sm hover:scale-105 hover:border-purple-400/50 transition-all"
+            >
+              <svg className="w-16 h-16 mx-auto mb-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#d65cff" strokeWidth="2.5"/>
+                <path d="M50 25 A25 25 0 0 1 75 50 L55 50 Z" fill="#ff00ff" opacity="0.6"/>
+                <circle cx="50" cy="50" r="8" fill="#fff"/>
+                <circle cx="50" cy="50" r="3" fill="#d65cff"/>
+              </svg>
+              <p className="text-purple-400 font-bold text-center text-sm">Hidden Opportunities</p>
+            </motion.div>
+
+            {/* Growth Prediction */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.0 }}
+              className="bg-gradient-to-br from-green-500/10 to-emerald-600/5 border-2 border-green-500/30 rounded-xl p-6 backdrop-blur-sm hover:scale-105 hover:border-green-400/50 transition-all"
+            >
+              <svg className="w-16 h-16 mx-auto mb-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 70 L25 55 L40 60 L60 40 L75 50 L90 25" fill="none" stroke="#00ff88" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="25" cy="55" r="3" fill="#00ff88"/>
+                <circle cx="40" cy="60" r="3" fill="#00ff88"/>
+                <circle cx="60" cy="40" r="3" fill="#00ff88"/>
+                <circle cx="75" cy="50" r="3" fill="#00ff88"/>
+                <rect x="86" y="21" width="8" height="8" fill="#00ff88"/>
+              </svg>
+              <p className="text-green-400 font-bold text-center text-sm">Growth Prediction</p>
+            </motion.div>
           </motion.div>
 
           {/* Video Section with Futuristic Frame */}

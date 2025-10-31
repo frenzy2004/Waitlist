@@ -107,8 +107,23 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute inset-0 bg-cyan-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
                 <div className="relative w-20 h-20 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-cyan-500/50 border border-cyan-400/30">
-                  <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  <svg className="w-12 h-12" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="pinGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#ffffff"/>
+                        <stop offset="100%" stopColor="#e0f2fe"/>
+                      </linearGradient>
+                    </defs>
+                    {/* Location pin/drop shape */}
+                    <path d="M256 100
+                             C 340 100 410 170 410 250
+                             C 410 335 320 420 256 480
+                             C 192 420 102 335 102 250
+                             C 102 170 172 100 256 100
+                             Z"
+                          fill="url(#pinGrad)" opacity="0.95"/>
+                    {/* Inner circle */}
+                    <circle cx="256" cy="240" r="60" fill="#0f2230" opacity="0.3"/>
                   </svg>
                   {/* Scanning Line */}
                   <div className="absolute inset-0 overflow-hidden rounded-2xl">

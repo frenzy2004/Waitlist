@@ -54,118 +54,239 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234F46E5' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v6h6V4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `
+            linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px',
+          animation: 'grid-move 20s linear infinite'
         }}></div>
       </div>
 
-      <div className="relative container mx-auto px-4 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          {/* Logo & Title */}
-          <div className="mb-8">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center gap-3 mb-6"
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/50">
-                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <h1 className="text-6xl font-bold text-white">BizLocate</h1>
-            </motion.div>
-            <p className="text-2xl text-gray-300 mb-4">
-              Stop picking locations based on hype.
-            </p>
-            <p className="text-xl text-gray-400 mb-12">
-              We use satellite data and AI to show you where the <span className="text-blue-400 font-semibold">real growth</span> is happening - not just where it&apos;s trending.
-            </p>
+      {/* Radar Scan Effect */}
+      <div className="absolute top-0 right-0 w-96 h-96 opacity-30">
+        <div className="absolute inset-0 rounded-full border-2 border-blue-500 animate-ping"></div>
+        <div className="absolute inset-8 rounded-full border-2 border-blue-400 animate-pulse"></div>
+        <div className="absolute inset-16 rounded-full border-2 border-blue-300 animate-ping" style={{animationDelay: '1s'}}></div>
+      </div>
 
-            {/* Value Props */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
-                <div className="text-3xl mb-3">🎯</div>
-                <h3 className="text-white font-semibold mb-2">Find Hidden Gems</h3>
-                <p className="text-gray-400 text-sm">Discover underserved areas before they blow up</p>
+      {/* Satellite Orbit Lines */}
+      <div className="absolute inset-0 overflow-hidden opacity-10">
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+        <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+      </div>
+
+      <style jsx>{`
+        @keyframes grid-move {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(50px); }
+        }
+      `}</style>
+
+      <div className="relative container mx-auto px-4 py-12 md:py-20">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="max-w-6xl mx-auto"
+        >
+          {/* Header with Satellite Icon */}
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
+              className="inline-flex items-center gap-4 mb-8"
+            >
+              {/* Satellite/Location Icon with Pulse */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-cyan-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                <div className="relative w-20 h-20 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-cyan-500/50 border border-cyan-400/30">
+                  <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  </svg>
+                  {/* Scanning Line */}
+                  <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                    <div className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-white to-transparent animate-scan"></div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
-                <div className="text-3xl mb-3">📈</div>
-                <h3 className="text-white font-semibold mb-2">Predict Growth</h3>
-                <p className="text-gray-400 text-sm">See property value trajectories before others do</p>
+              <div className="text-left">
+                <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
+                  BizLocate
+                </h1>
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <p className="text-cyan-400 text-sm font-mono tracking-wider">SATELLITE AI ACTIVE</p>
+                </div>
               </div>
-              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
-                <div className="text-3xl mb-3">🛡️</div>
-                <h3 className="text-white font-semibold mb-2">Avoid Mistakes</h3>
-                <p className="text-gray-400 text-sm">Don&apos;t open in oversaturated markets</p>
-              </div>
-            </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                Stop Picking Locations Based on{' '}
+                <span className="text-red-400 line-through">Hype</span>
+              </h2>
+              <p className="text-xl md:text-2xl text-gray-300 mb-6">
+                Use <span className="text-cyan-400 font-bold">Satellite Data</span> + <span className="text-purple-400 font-bold">AI</span> to see where
+              </p>
+              <p className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400 mb-8">
+                the REAL growth is happening
+              </p>
+            </motion.div>
           </div>
 
-          {/* Video Section */}
+          {/* Data Points Grid */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mb-12 rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/20 bg-gray-800"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto"
           >
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-              <iframe
-                src="https://www.loom.com/embed/1cbe001bf37b4eea93c907978cc06cab?t=0"
-                frameBorder="0"
-                allowFullScreen
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-              />
+            {[
+              { icon: '🛰️', label: 'Satellite Analysis', color: 'cyan' },
+              { icon: '📊', label: 'Market Intelligence', color: 'blue' },
+              { icon: '🎯', label: 'Hidden Opportunities', color: 'purple' },
+              { icon: '📈', label: 'Growth Prediction', color: 'green' }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7 + i * 0.1 }}
+                className={`bg-gradient-to-br from-${item.color}-500/10 to-${item.color}-600/5 border border-${item.color}-500/30 rounded-xl p-4 backdrop-blur-sm hover:scale-105 transition-transform`}
+              >
+                <div className="text-3xl mb-2">{item.icon}</div>
+                <p className={`text-${item.color}-400 font-semibold text-sm`}>{item.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Video Section with Futuristic Frame */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="mb-12 relative"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-2xl opacity-75 blur-lg"></div>
+            <div className="relative bg-gray-900 rounded-2xl overflow-hidden border-2 border-cyan-500/50 shadow-2xl">
+              <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 px-6 py-3 border-b border-cyan-500/30 flex items-center gap-3">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <p className="text-cyan-400 font-mono text-sm">demo_satellite_analysis.mp4</p>
+                <div className="ml-auto flex items-center gap-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                  <span className="text-red-400 text-xs font-mono">REC</span>
+                </div>
+              </div>
+              <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                <iframe
+                  src="https://www.loom.com/embed/1cbe001bf37b4eea93c907978cc06cab?t=0"
+                  frameBorder="0"
+                  allowFullScreen
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                />
+              </div>
             </div>
           </motion.div>
 
-          {/* Use Case Section */}
+          {/* Problem/Solution Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="grid md:grid-cols-2 gap-6 mb-12 max-w-5xl mx-auto"
+          >
+            {/* Problem */}
+            <div className="bg-red-500/10 border-2 border-red-500/30 rounded-2xl p-8 backdrop-blur-sm">
+              <div className="text-4xl mb-4">❌</div>
+              <h3 className="text-2xl font-bold text-red-400 mb-4">Without BizLocate</h3>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-3">
+                  <span className="text-red-400 mt-1">•</span>
+                  <span>Pick trendy areas → Oversaturated market</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-red-400 mt-1">•</span>
+                  <span>High rent, low returns</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-red-400 mt-1">•</span>
+                  <span>Miss hidden gem locations</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-red-400 mt-1">•</span>
+                  <span>Gut feelings = Costly mistakes</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Solution */}
+            <div className="bg-green-500/10 border-2 border-green-500/30 rounded-2xl p-8 backdrop-blur-sm">
+              <div className="text-4xl mb-4">✅</div>
+              <h3 className="text-2xl font-bold text-green-400 mb-4">With BizLocate</h3>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 mt-1">•</span>
+                  <span>Find underserved areas before they blow up</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 mt-1">•</span>
+                  <span>See property value growth trajectories</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 mt-1">•</span>
+                  <span>Avoid oversaturated markets</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 mt-1">•</span>
+                  <span>Data-driven decisions = Confident growth</span>
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Perfect For Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="mb-12 max-w-3xl mx-auto"
+            transition={{ delay: 1.2 }}
+            className="mb-12 max-w-4xl mx-auto"
           >
-            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-4">Perfect for:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                <div className="flex items-start gap-3">
-                  <span className="text-blue-400 text-xl">✓</span>
-                  <div>
-                    <p className="text-white font-semibold">Homebakers going physical</p>
-                    <p className="text-gray-400 text-sm">Your first cafe location matters</p>
+            <div className="bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-cyan-500/10 border border-purple-500/30 rounded-2xl p-8 backdrop-blur-sm">
+              <h3 className="text-3xl font-bold text-white mb-6 text-center">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                  Perfect for SMEs who can&apos;t afford mistakes
+                </span>
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  { title: 'Homebakers → Physical Cafe', desc: 'Your first location = make or break', icon: '🍰' },
+                  { title: 'Online Store → Retail Space', desc: 'Find where your customers actually are', icon: '🏪' },
+                  { title: 'Franchise Buyers', desc: 'Choose between 3 locations confidently', icon: '🏢' },
+                  { title: 'Property Investors', desc: 'Spot high-growth areas 2 years early', icon: '💎' }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-4 bg-black/30 rounded-xl p-4 border border-gray-700/50">
+                    <div className="text-3xl">{item.icon}</div>
+                    <div>
+                      <p className="text-white font-bold mb-1">{item.title}</p>
+                      <p className="text-gray-400 text-sm">{item.desc}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-blue-400 text-xl">✓</span>
-                  <div>
-                    <p className="text-white font-semibold">Online stores expanding</p>
-                    <p className="text-gray-400 text-sm">Find where your customers actually are</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-blue-400 text-xl">✓</span>
-                  <div>
-                    <p className="text-white font-semibold">Franchise buyers</p>
-                    <p className="text-gray-400 text-sm">Choose between 3 locations confidently</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-blue-400 text-xl">✓</span>
-                  <div>
-                    <p className="text-white font-semibold">Property investors</p>
-                    <p className="text-gray-400 text-sm">Spot high-growth areas early</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -174,20 +295,28 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mb-8"
+            transition={{ delay: 1.4 }}
+            className="text-center mb-8"
           >
-            <p className="text-lg text-gray-400">
-              Join <span className="text-blue-400 font-bold text-2xl">{count}</span> smart business owners on the waitlist
-            </p>
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full px-6 py-3 backdrop-blur-sm">
+              <div className="flex gap-1">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{animationDelay: `${i * 0.2}s`}}></div>
+                ))}
+              </div>
+              <p className="text-gray-300">
+                <span className="text-cyan-400 font-bold text-3xl font-mono">{count}</span>{' '}
+                <span className="text-gray-400">smart business owners on the waitlist</span>
+              </p>
+            </div>
           </motion.div>
 
           {/* Waitlist Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="max-w-lg mx-auto"
+            transition={{ delay: 1.6 }}
+            className="max-w-xl mx-auto"
           >
             <AnimatePresence mode="wait">
               {isSuccess ? (
@@ -196,11 +325,11 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  className="bg-green-500/20 border-2 border-green-500 rounded-2xl p-8"
+                  className="bg-gradient-to-r from-green-500/20 to-cyan-500/20 border-2 border-green-500 rounded-2xl p-8 text-center backdrop-blur-sm"
                 >
-                  <div className="text-6xl mb-4">🎉</div>
-                  <h3 className="text-2xl font-bold text-green-400 mb-2">Welcome aboard!</h3>
-                  <p className="text-gray-300">We&apos;ll notify you when we launch.</p>
+                  <div className="text-6xl mb-4">🎯</div>
+                  <h3 className="text-3xl font-bold text-green-400 mb-3">You&apos;re on the radar!</h3>
+                  <p className="text-gray-300 text-lg">We&apos;ll notify you when we launch. Get ready to make data-driven location decisions.</p>
                 </motion.div>
               ) : (
                 <motion.form
@@ -211,30 +340,30 @@ export default function Home() {
                   onSubmit={handleSubmit}
                   className="space-y-4"
                 >
-                  <div>
+                  <div className="relative">
                     <input
                       type="text"
                       placeholder="Name (optional)"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-6 py-4 bg-gray-800 border-2 border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                      className="w-full px-6 py-4 bg-black/50 border-2 border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all backdrop-blur-sm"
                     />
                   </div>
-                  <div>
+                  <div className="relative">
                     <input
                       type="email"
                       placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full px-6 py-4 bg-gray-800 border-2 border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                      className="w-full px-6 py-4 bg-black/50 border-2 border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all backdrop-blur-sm"
                     />
                   </div>
                   {error && (
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-red-400 text-sm"
+                      className="text-red-400 text-sm font-semibold"
                     >
                       {error}
                     </motion.p>
@@ -242,36 +371,53 @@ export default function Home() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg shadow-blue-500/50"
+                    className="w-full relative group overflow-hidden"
                   >
-                    {isLoading ? (
-                      <span className="flex items-center justify-center gap-2">
-                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        Joining...
-                      </span>
-                    ) : (
-                      'Join Waitlist'
-                    )}
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-xl blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="relative bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold py-4 px-8 rounded-xl transition-all transform group-hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:group-hover:scale-100 border border-cyan-400/30">
+                      {isLoading ? (
+                        <span className="flex items-center justify-center gap-3">
+                          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          Joining...
+                        </span>
+                      ) : (
+                        <span className="flex items-center justify-center gap-2">
+                          🚀 Get Early Access
+                        </span>
+                      )}
+                    </div>
                   </button>
                 </motion.form>
               )}
             </AnimatePresence>
           </motion.div>
 
-          {/* Footer */}
+          {/* Trust Line */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="mt-16 text-gray-500 text-sm"
+            transition={{ delay: 1.8 }}
+            className="mt-12 text-center"
           >
-            <p>We respect your privacy. No spam, ever.</p>
+            <p className="text-gray-500 text-sm">
+              🔒 No spam. Just satellite-powered location intelligence.
+            </p>
           </motion.div>
         </motion.div>
       </div>
+
+      <style jsx>{`
+        @keyframes scan {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(400%); }
+        }
+        .animate-scan {
+          animation: scan 2s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }

@@ -2,7 +2,10 @@
 
 Your app is deployed! 🎉
 
-**Deployment URL:** https://bizlocate-waitlist-x6yrt4wqt-frenzy2004s-projects.vercel.app
+**Deployment URL:** https://bizlocate-waitlist-git-main-frenzy2004s-projects.vercel.app
+
+**Note:** Vercel is currently deploying the complete application. Check deployment status at:
+https://vercel.com/frenzy2004s-projects/bizlocate-waitlist/deployments
 
 ## Step 1: Create Postgres Database
 

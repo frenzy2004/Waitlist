@@ -84,9 +84,31 @@ export default function Home() {
               </div>
               <h1 className="text-6xl font-bold text-white">BizLocate</h1>
             </motion.div>
-            <p className="text-2xl text-gray-300 mb-12">
-              Finding the best location for your business
+            <p className="text-2xl text-gray-300 mb-4">
+              Stop picking locations based on hype.
             </p>
+            <p className="text-xl text-gray-400 mb-12">
+              We use satellite data and AI to show you where the <span className="text-blue-400 font-semibold">real growth</span> is happening - not just where it&apos;s trending.
+            </p>
+
+            {/* Value Props */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
+                <div className="text-3xl mb-3">🎯</div>
+                <h3 className="text-white font-semibold mb-2">Find Hidden Gems</h3>
+                <p className="text-gray-400 text-sm">Discover underserved areas before they blow up</p>
+              </div>
+              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
+                <div className="text-3xl mb-3">📈</div>
+                <h3 className="text-white font-semibold mb-2">Predict Growth</h3>
+                <p className="text-gray-400 text-sm">See property value trajectories before others do</p>
+              </div>
+              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
+                <div className="text-3xl mb-3">🛡️</div>
+                <h3 className="text-white font-semibold mb-2">Avoid Mistakes</h3>
+                <p className="text-gray-400 text-sm">Don&apos;t open in oversaturated markets</p>
+              </div>
+            </div>
           </div>
 
           {/* Video Section */}
@@ -106,15 +128,57 @@ export default function Home() {
             </div>
           </motion.div>
 
+          {/* Use Case Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mb-12 max-w-3xl mx-auto"
+          >
+            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-white mb-4">Perfect for:</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                <div className="flex items-start gap-3">
+                  <span className="text-blue-400 text-xl">✓</span>
+                  <div>
+                    <p className="text-white font-semibold">Homebakers going physical</p>
+                    <p className="text-gray-400 text-sm">Your first cafe location matters</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-blue-400 text-xl">✓</span>
+                  <div>
+                    <p className="text-white font-semibold">Online stores expanding</p>
+                    <p className="text-gray-400 text-sm">Find where your customers actually are</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-blue-400 text-xl">✓</span>
+                  <div>
+                    <p className="text-white font-semibold">Franchise buyers</p>
+                    <p className="text-gray-400 text-sm">Choose between 3 locations confidently</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-blue-400 text-xl">✓</span>
+                  <div>
+                    <p className="text-white font-semibold">Property investors</p>
+                    <p className="text-gray-400 text-sm">Spot high-growth areas early</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Counter */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.8 }}
             className="mb-8"
           >
             <p className="text-lg text-gray-400">
-              Join <span className="text-blue-400 font-bold text-2xl">{count}</span> people on the waitlist
+              Join <span className="text-blue-400 font-bold text-2xl">{count}</span> smart business owners on the waitlist
             </p>
           </motion.div>
 
